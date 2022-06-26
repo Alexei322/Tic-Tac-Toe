@@ -10,14 +10,15 @@
 <body>
     <div class="introSection">
         <div class="leftside">
-            <form>
+            <form id="myform">
                 <fieldset>
                     <legend>Enter name and select noughts or cross!</legend>
-                    <input type="text">
+                    <input type="text" name="nameinput" required>
+                    <label for="nameinput">Name</label>
                     <div class="innerradio">
-                    <input type="radio" name="nought">
-                    <label for="name">Nought</label>
-                    <input type="radio" name="cross">
+                    <input type="radio" name="noughtorcross" id="nought" value="O" required>
+                    <label for="nought">Nought</label>
+                    <input type="radio" name="noughtorcross" id="cross" value="X">
                     <label for="cross">Cross</label>
                     </div>
                     <button type="submit">Submit!</button>
