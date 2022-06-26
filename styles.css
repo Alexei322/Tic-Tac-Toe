@@ -1,6 +1,6 @@
 .playgrid {
-    height: 50vh;
-    width: 50vw;
+    height: 75vh;
+    width: 75vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border: 1rem solid black;
@@ -11,4 +11,23 @@
 
 .griditem {
     border: 2px solid aqua;
+    height: 5rem;
+    width: 5rem;
+}
+
+.introsection {
+    display: flex;
+    flex-direction: column;
+}
+
+.leftside form fieldset{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.innerradio {
+    display: flex;
+    justify-content: center;
 }
