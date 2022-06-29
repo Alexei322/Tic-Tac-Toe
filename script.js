@@ -169,8 +169,10 @@ const displayController = (() => {
         } else {
           freePos = gameBoard.getFreePositions();
           if (freePos.length === 0) {
-            gameBoard.resetBoard();
-            gameBoard.refreshDisplay();
+            setTimeout(() => {
+              gameBoard.resetBoard();
+              gameBoard.refreshDisplay();
+            }, 500);
           } else {
             randomFree = freePos[Math.floor(Math.random() * freePos.length)];
             gameBoard.alterBoard(
