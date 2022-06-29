@@ -8,40 +8,52 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="introSection">
-      <div class="leftside">
-        <form id="myform">
-          <fieldset>
-            <legend>Enter name and select noughts or cross!</legend>
-            <input type="text" name="nameinput" required />
-            <label for="nameinput">Name</label>
-            <div class="innerradio">
-              <input
-                type="radio"
-                name="noughtorcross"
-                id="nought"
-                value="O"
-                required
-              />
-              <label for="nought">Nought</label>
-              <input type="radio" name="noughtorcross" id="cross" value="X" />
-              <label for="cross">Cross</label>
-            </div>
-            <button type="submit">Submit!</button>
-          </fieldset>
-        </form>
-      </div>
+    <div class="heading">
+      <h3>Tic-Tac-Toe!</h3>
     </div>
+
     <div class="playgrid">
-      <h3 class="griditem" id="00">X</h3>
-      <h3 class="griditem" id="01">X</h3>
-      <h3 class="griditem" id="02">X</h3>
-      <h3 class="griditem" id="10">X</h3>
-      <h3 class="griditem" id="11">O</h3>
-      <h3 class="griditem" id="12">X</h3>
-      <h3 class="griditem" id="20">X</h3>
-      <h3 class="griditem" id="21">X</h3>
-      <h3 class="griditem" id="22">X</h3>
+      <div class="griditem" id="00">X</div>
+      <div class="griditem" id="01">X</div>
+      <div class="griditem" id="02">X</div>
+      <div class="griditem" id="10">X</div>
+      <div class="griditem" id="11">O</div>
+      <div class="griditem" id="12">X</div>
+      <div class="griditem" id="20">X</div>
+      <div class="griditem" id="21">X</div>
+      <div class="griditem" id="22">X</div>
+    </div>
+
+    <div class="form">
+      <form id="myform">
+        <fieldset>
+          <legend>Select noughts or cross!</legend>
+          <div class="innerradio">
+            <input
+              type="radio"
+              name="noughtorcross"
+              id="nought"
+              value="O"
+              required
+            />
+            <label for="nought">Nought</label>
+            <input type="radio" name="noughtorcross" id="cross" value="X" />
+            <label for="cross">Cross</label>
+          </div>
+          <button type="submit">Submit!</button>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="scores">
+      <div class="playeronescore">
+        <h3>Player one's score is:</h3>
+        <p>0</p>
+      </div>
+      <div class="playertwoscore">
+        <h3>Player two's score is:</h3>
+        <p>0</p>
+      </div>
     </div>
 
     <script src="script.js"></script>

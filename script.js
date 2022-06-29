@@ -29,7 +29,7 @@ const gameBoard = (() => {
     }
   };
   const alterBoard = (rowIndex, arrIndex, item) => {
-    if (checkIfFree(rowIndex, arrIndex) == true) {
+    if (checkIfFree(rowIndex, arrIndex) === true) {
       game[rowIndex][arrIndex] = item;
     }
   };
@@ -38,7 +38,6 @@ const gameBoard = (() => {
     let index = 0;
     game.forEach((row) => {
       row.forEach((innerItem) => {
-        console.log(innerItem);
         allDocItems[index].textContent = innerItem;
         index++;
       });
@@ -107,22 +106,24 @@ const gameBoard = (() => {
 })();
 
 const player = () => {
-  let name;
   let noughtorcross;
-  const getName = () => name;
+  let score = 0;
   const getNoughtOrCross = () => noughtorcross;
-  const setName = (setname) => (name = setname);
   const setNoughtOrCross = (setnought) => (noughtorcross = setnought);
+  const getScore = () => score;
+  const setScore = (userscore) => (score = userscore);
   return {
-    getName,
     getNoughtOrCross,
-    setName,
     setNoughtOrCross,
+    getScore,
+    setScore,
   };
 };
 
 const displayController = (() => {
   const submitForm = document.querySelector("#myform");
+  const playOneScore = document.querySelector(".playeronescore > p");
+  const playTwoScore = document.querySelector(".playertwoscore > p");
   playerOne = player();
   playerTwo = player();
   submitForm.addEventListener("submit", function (e) {
@@ -131,12 +132,8 @@ const displayController = (() => {
     const formPairs = {};
     for (const [name, value] of formInfo) {
       formPairs[name] = value;
-      console.log(name, value);
     }
-    console.log(formPairs);
-    playerOne.setName(formPairs.nameinput);
     userChoice = playerOne.setNoughtOrCross(formPairs.noughtorcross);
-    playerTwo.setName("Computorrrrrr");
     if (userChoice === "X") {
       playerTwo.setNoughtOrCross("O");
     } else {
@@ -160,25 +157,39 @@ const displayController = (() => {
           parseInt(gridItem.id[1]),
           playerOne.getNoughtOrCross()
         );
+        gameBoard.loggameBoard();
         gameBoard.refreshDisplay();
         if (gameBoard.checkWinner(playerOne.getNoughtOrCross()) === true) {
-          alert("Player one wins!");
-          startGame();
+          playerOne.setScore(playerOne.getScore() + 1);
+          playOneScore.textContent = playerOne.getScore();
+          setTimeout(() => {
+            gameBoard.resetBoard();
+            gameBoard.refreshDisplay();
+          }, 500);
+        } else {
+          freePos = gameBoard.getFreePositions();
+          if (freePos.length === 0) {
+            gameBoard.resetBoard();
+            gameBoard.refreshDisplay();
+          } else {
+            randomFree = freePos[Math.floor(Math.random() * freePos.length)];
+            gameBoard.alterBoard(
+              randomFree[0],
+              randomFree[1],
+              playerTwo.getNoughtOrCross()
+            );
+            if (gameBoard.checkWinner(playerTwo.getNoughtOrCross()) === true) {
+              playerTwo.setScore(playerTwo.getScore() + 1);
+              playTwoScore.textContent = playerTwo.getScore();
+              setTimeout(() => {
+                gameBoard.resetBoard();
+                gameBoard.refreshDisplay();
+              }, 500);
+            }
+          }
         }
-        freePos = gameBoard.getFreePositions();
-        if (freePos.length === 0) {
-          alert("Draw!");
-          startGame();
-        }
-        randomFree = freePos[Math.floor(Math.random() * freePos.length)];
-        gameBoard.alterBoard(
-          randomFree[0],
-          randomFree[1],
-          playerTwo.getNoughtOrCross()
-        );
         gameBoard.refreshDisplay();
       });
     });
-    gameBoard.loggameBoard();
   };
 })();
